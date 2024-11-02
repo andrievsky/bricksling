@@ -29,7 +29,7 @@ func main() {
 }
 
 func serve() {
-	fs := http.FileServer(http.Dir("public"))
+	fs := http.FileServer(http.Dir("docs"))
 	http.Handle("/", http.StripPrefix("/", fs))
 
 	log.Println("Server starting at :8080")
@@ -56,8 +56,8 @@ func build() {
 	indexJSONPath := "source/index.json"
 	imagesPath := "source/images"
 	templatePath := "template/index.html"
-	outputHTMLPath := "public/index.html"
-	imagesOutputDir := "public/images"
+	outputHTMLPath := "docs/index.html"
+	imagesOutputDir := "docs/images"
 
 	// Read and parse the JSON data
 	var postsData PostsData
