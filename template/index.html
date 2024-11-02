@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edwin Builds</title>
+    <style>
+        /* Reset some basic styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            color: #000;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-top: 18px;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+
+        /* Main container */
+        .container {
+            width: 100%;
+            margin: 0;
+        }
+
+        /* Post styles */
+        .post {
+            margin-bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .post img {
+            width: 100%;
+            height: auto;
+        }
+
+        .post-text {
+            width: 100%;
+            padding: 15px;
+            text-align: left;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .post h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .post p {
+            line-height: 1.6;
+            color: #ccc;
+        }
+
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Edwin Builds</h1>
+    </header>
+
+    <!-- Main container for posts -->
+    <div class="container">
+        <!-- Post 1 -->
+        <div class="post">
+            {{range .Posts}}
+            <div class="post-text">
+                <h2>{{.Title}}</h2>
+                <p>{{.Caption}}</p>
+            </div>
+            <img src="images/{{.Image}}" alt="{{.Title}}">
+            {{end}}
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Edwin & The Family. All rights reserved.</p>
+    </footer>
+</body>
+</html>
