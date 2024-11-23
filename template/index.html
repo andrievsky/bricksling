@@ -22,7 +22,7 @@
         header {
             background-color: #000;
             color: #fff;
-            padding: 20px;
+            padding: 40px;
             text-align: center;
         }
 
@@ -45,7 +45,7 @@
 
         /* Post styles */
         .post {
-            margin-bottom: 0;
+            margin-bottom: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -92,16 +92,16 @@
 
     <!-- Main container for posts -->
     <div class="container">
-        <!-- Post 1 -->
+        {{range .Posts}}
         <div class="post">
-            {{range .Posts}}
+            
             <div class="post-text">
                 <h2>{{.Title}}</h2>
                 <p>{{.Caption}}</p>
             </div>
             <img src="images/{{.Image}}" alt="{{.Title}}">
-            {{end}}
         </div>
+        {{end}}
 
     </div>
 
