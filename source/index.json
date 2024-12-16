@@ -1,9 +1,14 @@
 {
     "posts":[
         {
+            "image": "DSCF8370.jpg",
+            "title":"Christmas Sleigh",
+            "caption":"The sleigh is a kind of loading dock for presents and baubles. And there's a reindeer pulling it. It's connected to the sleigh. The tail is floofy and fluffy. It's a round and floofy tail. That's it. Bye-bye."
+        },
+        {
             "image": "DSCF8083.jpg",
             "title":"Treasure Chest",
-            "caption":" It's great, full of crystals and I have to run. Bye!"
+            "caption":"It's great, full of crystals and I have to run. Bye!"
         },
         {
             "image": "DSCF8057.jpg",
