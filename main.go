@@ -116,6 +116,11 @@ func build() {
 		srcImagePath := filepath.Join(imagesPath, post.Image)
 		dstImagePath := filepath.Join(imagesOutputDir, filepath.Base(post.Image))
 
+		if _, err := os.Stat(dstImagePath); err == nil {
+			fmt.Printf("Image %s already exists, skipping...\n", post.Image)
+			continue
+		}
+
 		// Open the source image
 		srcImageFile, err := os.Open(srcImagePath)
 		if err != nil {
