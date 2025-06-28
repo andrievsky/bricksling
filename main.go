@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"flag"
 	"fmt"
 	"html/template"
 	"io"
@@ -18,15 +17,7 @@ import (
 	"github.com/nfnt/resize"
 )
 
-var addImagesFlag = flag.Bool("add-images", false, "Add images")
-
 func main() {
-	serveFlag := flag.Bool("serve", false, "Start the server")
-	flag.Parse()
-	if *serveFlag {
-		serve()
-		return
-	}
 	build()
 	serve()
 }
@@ -115,33 +106,29 @@ func build() {
 	}
 
 	if len(unusedImages) > 0 {
-		if *addImagesFlag {
-			fmt.Println("Adding unused images to the index json...")
-			slices.Reverse(unusedImages)
-			newPosts := make([]Post, 0)
-			for _, image := range unusedImages {
-				fmt.Printf("Adding image: %s\n", image)
-				newPosts = append(newPosts, Post{
-					Title:   "New",
-					Caption: "Meaningful caption",
-					Image:   image,
-				})
-			}
-			postsData.Posts = append(newPosts, postsData.Posts...)
-			postsDataJSON, err := json.MarshalIndent(postsData, "", "  ")
-			if err != nil {
-				fmt.Printf("Error marshalling updated JSON data: %v\n", err)
-				return
-			}
-			err = os.WriteFile(indexJSONPath, postsDataJSON, 0644)
-			if err != nil {
-				fmt.Printf("Error writing updated JSON data to file: %v\n", err)
-				return
-			}
-			fmt.Println("Updated index.json with new images.")
-		} else {
-			fmt.Println("Unused images found, use -add-images flag to add them to the index json.")
+		fmt.Println("Adding new images to the index json...")
+		slices.Reverse(unusedImages)
+		newPosts := make([]Post, 0)
+		for _, image := range unusedImages {
+			fmt.Printf("Adding image: %s\n", image)
+			newPosts = append(newPosts, Post{
+				Title:   "New",
+				Caption: "Meaningful caption",
+				Image:   image,
+			})
 		}
+		postsData.Posts = append(newPosts, postsData.Posts...)
+		postsDataJSON, err := json.MarshalIndent(postsData, "", "  ")
+		if err != nil {
+			fmt.Printf("Error marshalling updated JSON data: %v\n", err)
+			return
+		}
+		err = os.WriteFile(indexJSONPath, postsDataJSON, 0644)
+		if err != nil {
+			fmt.Printf("Error writing updated JSON data to file: %v\n", err)
+			return
+		}
+		fmt.Println("Updated index.json with new images.")
 	}
 
 	// Execute template with the data
